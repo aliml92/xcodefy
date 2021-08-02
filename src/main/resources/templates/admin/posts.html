@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="common/writer-fragments :: head">
+    <title>Bootstrap 4 Blog Template For Developers</title>
+
+</head>
+<body class="bg-dark">
+    <div class="container-md bg-light">
+        <div th:replace="common/writer-fragments :: navbar"></div>
+        <br><br><br>
+        <div class="alert alert-secondary" role="alert" th:if="${message}">
+            <span th:text="${message}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="card" th:unless="${postList}">
+            <div class="card-body">
+                <h2 class="text-center fs-1">No posts published yet</h2>
+            </div>
+        </div>
+        <div class="menu-item">
+            Published posts
+        </div>
+        <table class="table" th:if="${postList}">
+                    <thead>
+                    <tr>
+                        <th scope="col-sm-1">Post Id</th>
+                        <th scope="col-sm-9">Post Title</th>
+                        <th scope="col-sm-1">Actions</th>
+                        <th scope="col-sm-1"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="post : ${postList}">
+                        <th scope="row" th:text="${post.id}"></th>
+                        <td th:text="${post.title}"></td>
+                        <td><a class="btn btn-primary" th:href="@{'/app/admin/post/' + ${post.id} + '/edit'}">Edit</a>
+                        <td>
+                            <form th:action="@{'/app/admin/post/' + ${post.id} + '/delete'}" method="get" >
+                                <input type="hidden" name="page" value="published">
+                                <button type="submit" class="btn btn-danger" >Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+        <hr/>
+        <ul class="pagination justify-content-center" th:if="${totalPages > 1}">
+                        <li class="page-item">
+                            <span class="page-link">Total items: [[${totalItems}]]</span>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link"  th:if="${currentPage > 1}" th:href="@{'/app/admin/post/all/' + ${1}}">First</a>
+                            <span class="page-link" th:unless="${currentPage > 1}">First</span>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link"  th:if="${currentPage > 1}" th:href="@{'/app/admin/post/all/' + ${currentPage - 1}}">Previous</a>
+                            <span class="page-link"  th:unless="${currentPage > 1}">Previous</span>
+                        </li>
+                        <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
+                            <a class="page-link" href="#" th:if="${i != currentPage}" th:href="@{'/app/admin/post/all/' + ${i}}">[[${i}]]</a>
+                            <span class="page-link" th:unless="${i != currentPage}">[[${i}]]</span>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link"  th:if="${currentPage < totalPages}" th:href="@{'/app/admin/post/all/' + ${currentPage + 1}}" href="#">Next</a>
+                            <span class="page-link" th:unless="${currentPage < totalPages}">Next</span>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link"  th:if="${currentPage < totalPages}" th:href="@{'/app/admin/post/all/' + ${totalPages}}" href="#">Last</a>
+                            <span class="page-link" th:unless="${currentPage < totalPages}">Last</span>
+                        </li>
+                    </ul>
+    </div>
+    <div th:replace="common/writer-fragments :: footer"></div>
+</body>
+</html>

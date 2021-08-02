@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-header="sticky" >
+<head th:replace="common/fragments :: head(~{::title},~{::meta})">
+    <title>Tags</title>
+    <meta name="description" data-th-attr="content='great programming tutorials tagged with spring rest, hibernate, spring data jpa and useful tips '">
+</head>
+<body class="page-template page-tags">
+<div class="site-wrap">
+
+    <!-- navbar start -->
+    <div th:replace="common/fragments :: navbar"></div>
+    <!-- navbar end -->
+
+    <!-- main body start-->
+    <div class="main custom-archive">
+        <section class="cover-wrap">
+            <div class="container">
+                <div class="archive-cover has-image">
+                    <img class="feature-image" src="data:," th:attr="data-src=@{'/assets/image/tags-bg.jpg'}" alt="tags"/>
+                    <div class="cover-content-wrapper text-center tpt">
+                        <h1 class="title h1">Tags</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container custom-list-wrapper">
+            <div class="row" th:if="${tags}">
+                <div class="col-lg-3 col-md-4 col-sm-6 item-card-wrap" th:each="tag : ${tags}">
+                    <a th:href="@{'/tag/' + ${tag.name}}" class="item-card">
+                        <div class="item-card-inner card t">
+                            <div class="tag-name h5" th:text="${tag.name}"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row" th:unless="${tags}">
+                <h2>No tags created yet</h2>
+            </div>
+        </div>
+    </div>
+    <!-- main body end-->
+
+    <!-- footer start-->
+
+    <!--  footer end -->
+    <div th:replace="common/fragments :: footer-after"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="common/writer-fragments :: head">
+    <title>Bootstrap 4 Blog Template For Developers</title>
+
+</head>
+<body class="bg-dark">
+<div class="container-md bg-light">
+    <div th:replace="common/writer-fragments :: navbar"></div>
+    <br><br><br>
+    <div class="alert alert-secondary" role="alert" th:if="${message}">
+        <span th:text="${message}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="card" th:unless="${commentList}">
+        <div class="card-body">
+            <h2 class="text-center fs-1">No posts published yet</h2>
+        </div>
+    </div>
+    <div class="menu-item">
+        Recent Comments
+    </div>
+    <div class="table-responsive-lg">
+        <table class="table" th:if="${commentList}">
+            <thead>
+            <tr>
+                <th scope="col-sm-1">Comment Id</th>
+                <th scope="col-sm-1">Post Id</th>
+                <th scope="col-sm-1">Created Date</th>
+                <th scope="col-sm-9">Comment Body</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="comment : ${commentList}">
+                <th th:scope="row" th:text="${comment.id}"></th>
+                <td th:text="${comment.post.id}"></td>
+                <td>
+                <i th:text="${#dates.format(comment.createdDate, 'dd-MMM-yyyy,hh:mm')}"></i>
+                </td>
+                <td>
+                    <div class="card">
+                        <div class="card-header">
+                            <span th:text="${comment.createdBy}"></span><i> says</i>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text" th:utext="${comment.commentBody}" style="white-space: pre-wrap;"></p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr/>
+    <ul class="pagination justify-content-center" th:if="${totalPages > 1}">
+        <li class="page-item">
+            <span class="page-link">Total items: [[${totalItems}]]</span>
+        </li>
+        <li class="page-item">
+            <a class="page-link"  th:if="${currentPage > 1}" th:href="@{'/app/admin/comments/' + ${1}}">First</a>
+            <span class="page-link" th:unless="${currentPage > 1}">First</span>
+        </li>
+        <li class="page-item">
+            <a class="page-link"  th:if="${currentPage > 1}" th:href="@{'/app/admin/comments/' + ${currentPage - 1}}">Previous</a>
+            <span class="page-link"  th:unless="${currentPage > 1}">Previous</span>
+        </li>
+        <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
+            <a class="page-link" href="#" th:if="${i != currentPage}" th:href="@{'/app/admin/comments/' + ${i}}">[[${i}]]</a>
+            <span class="page-link" th:unless="${i != currentPage}">[[${i}]]</span>
+        </li>
+        <li class="page-item">
+            <a class="page-link"  th:if="${currentPage < totalPages}" th:href="@{'/app/admin/comments/' + ${currentPage + 1}}" href="#">Next</a>
+            <span class="page-link" th:unless="${currentPage < totalPages}">Next</span>
+        </li>
+        <li class="page-item">
+            <a class="page-link"  th:if="${currentPage < totalPages}" th:href="@{'/app/admin/comments/' + ${totalPages}}" href="#">Last</a>
+            <span class="page-link" th:unless="${currentPage < totalPages}">Last</span>
+        </li>
+    </ul>
+</div>
+<div th:replace="common/writer-fragments :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-header="sticky" >
+<head th:replace="common/fragments :: head(~{::title},~{::meta})">
+    <title>About Me</title>
+    <meta name="description" data-th-attr="content='about me'">
+</head>
+<body class="home-template">
+<div class="site-wrap">
+
+    <!-- navbar start -->
+    <div th:replace="common/fragments :: navbar"></div>
+    <!-- navbar end -->
+
+    <!-- main body start-->
+    <div class="main">
+        <section class="home-hero">
+            <div class="div container home-hero-inner">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="intro-wrap flex">
+                            <div class="intro-inner">
+                                <h2>About</h2>
+                                <p>Hi! My name is Alisher Muzaffarov and I am a passionate programmer and a graduate student in IT.
+                                    I feel comfortable when I consciously know how the program works 😀
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-lg-4 offset-lg-1">
+                        <div class="portrait-wrap">
+                            <img class="feature-image"  src="data:," th:attr="data-src=@{'/assets/image/profile.jpg'}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="post-inner-wrap">
+                    <h4 class="post-title">Techs | Free time | Contact</h4>
+                    <div class="post-content">
+                        My experience and interest lie in backend technologies, including Java, Spring Boot, Spring-MVC, Hibernate, Spring Data JPA, Postgresql, Thymeleaf. My frontend skills revolve around CSS, Bootstrap, and Javascript. I enjoy using Linux, particularly Ubuntu. During the development stage, I like getting a test of various open-source libraries when needed. Chrome DevTools is my favorite when I have to test CSS and Javascript.
+                    </div>
+                    <br>
+                    <div class="post-content">
+                        In my leisure time, I enjoy watching movies and TV shows, particularly Friends. I spend many weekends playing bowling and football with friends. One more activity I love is learning and practicing algorithms.
+                    </div>
+                    <br>
+                    <div class="post-content">
+                        You can reach me at armrlh@gmail.com
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- main body end-->
+
+    <div th:replace="common/fragments :: footer-after"></div>
+</div>
+</body>
+</html>

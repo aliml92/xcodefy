@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-header="sticky" >
+<head th:replace="common/fragments :: head(~{::title},~{::meta})">
+    <title th:text="${tag}"></title>
+    <meta name="description" data-th-attr="content='great tutorials on ' + ${tag}">
+</head>
+<body class="home-template">
+<div class="site-wrap">
+
+    <!-- navbar start -->
+    <div th:replace="common/fragments :: navbar"></div>
+    <!-- navbar end -->
+
+    <!-- main body start-->
+    <div class="main">
+        <section class="cover-wrap">
+            <div class="container">
+                <div class="archive-cover has-image">
+                    <img class="feature-image" src="data:," th:attr="data-src=@{'/assets/image/tag-bg.jpg'}" alt="post image"/>
+                    <div class="cover-content-wrapper text-center tpt">
+                        <div>Tag</div>
+                        <h1 class="tag-name h1" th:text="${tag}"></h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="post-loop-wrap" th:if="${postList}">
+                    <div class="post" th:each="postDto : ${postList}">
+                        <div class="post-info">
+                            <span class="primary-tag"><a th:href="@{'/topic/' + ${postDto.category}}"><span th:text="${postDto.category}"></span></a></span>
+                            <span class="date" th:text="${postDto.postDate}"></span>
+                        </div>
+                        <h2 class="post-title">
+                            <a th:href="@{'/' + ${postDto.sfid}}" th:text="${postDto.title}"></a>
+                        </h2>
+                        <div class="post-excerpt">
+                            <a th:href="@{'/' + ${postDto.sfid}}" th:utext="${postDto.contentPart}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-loop-wrap" th:if="${#lists.isEmpty(postList)}">
+                    <div class="post">
+                        <h2 class="post-title">No Posts Yet</h2>
+                        <div class="post-excerpt">
+                            We are working on it
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination-wrap flex" role="navigation" th:if="${totalPages > 1}">
+                    <div  class="newer-posts">
+                        <a th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1}}">Previous
+                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+                                <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div  class="older-posts">
+                        <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">Next
+                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+                                <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- main body end-->
+    <div th:replace="common/fragments :: footer-after"></div>
+</div>
+</body>
+</html>

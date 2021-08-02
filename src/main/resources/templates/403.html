@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-header="sticky" >
+<head th:replace="common/fragments :: head(~{::title},~{::meta})">
+    <title>403</title>
+    <meta name="description" data-th-attr="content=''">
+</head>
+<body class="home-template">
+<div class="site-wrap">
+
+    <!-- navbar start -->
+    <div th:replace="common/fragments :: navbar"></div>
+    <!-- navbar end -->
+    <div class="main">
+        <div class="container">
+            <div class="error-wrap text-center">
+                <span class="error-code">403</span>
+                <h1 class="error-message h2">Access denied</h1>
+                <p class="message-manual">You are not allowed to see this page</p>
+                <a href="/" class="btn btn-primary">Return to home page</a>
+            </div>
+        </div>
+    </div>
+    <!-- main body end-->
+    <div th:replace="common/fragments :: footer-after"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-header="sticky" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>It is during our darkest moments that we must focus to see the light</title>
+    <link href="/assets/css/screen.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-tomorrow.min.css"  />
+    <link rel="stylesheet" href="/assets/trumbowyg/dist/ui/trumbowyg.css">
+    <link rel="stylesheet" href="/assets/trumbowyg/dist/plugins/highlight/ui/trumbowyg.highlight.min.css">
+    <link rel="stylesheet" href="/assets/trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    <style>
+        .post-title{
+            font-size: 28px !important;
+            height: 7vh !important;
+        }
+        .error-message{
+            color: red !important;
+        }
+    </style>
+
+</head>
+
+<body class="post-template tag-inspiration">
+
+<div class="site-wrap">
+    <div class="main">
+        <div class="single-post-wrap">
+            <div class="container">
+                <a class="btn btn-primary" th:href="@{/app/admin}">Go back</a>
+                <div class="row">
+                    <div class="col">
+                        <form action="#" class="post-inner-wrap" th:action="@{/app/admin/post/new}"  th:object="${post}" method="post" enctype="multipart/form-data">
+
+                            <input class="post-title" th:field="*{title}" type="text"  id="title" placeholder="Enter a title for article">
+                            <small class="error-message" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></small>
+                            <label>Post Image (High Quality [400kb-2.5MB])</label>
+                            <input type="file" class="custom-input" th:field="*{postImage}">
+                            <small class="error-message" th:if="${#fields.hasErrors('postImage')}" th:errors="*{postImage}"></small>
+                            <br><br>
+                            <textarea  th:field="*{contentPart}"   placeholder="Post Description (some upper par of actual post) "></textarea>
+                            <br><br>
+                            <textarea class="post-content " th:field="*{content}"  id="editor" placeholder="Post body here"></textarea>
+                            <small class="error-message" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></small>
+                            <br>
+                            <input type="text" class="custom-input"  th:field="*{tag}" placeholder="Enter tags with commas. Eg., jpa,spring roo ">
+                            <small class="error-message" th:if="${#fields.hasErrors('tag')}" th:errors="*{tag}"></small>
+                            <input type="text" class="custom-input" th:field="*{category}" placeholder="Enter category. Eg., spring framework ">
+                            <small class="error-message" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></small>
+                            <button type="submit" class="btn btn-primary">Save Draft</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
+<script src="/assets/trumbowyg/dist/trumbowyg.min.js"></script>
+<script src="/assets/trumbowyg/dist/plugins/allowtagsfrompaste/trumbowyg.allowtagsfrompaste.min.js"></script>
+<script src="/assets/trumbowyg/dist/plugins/emoji/trumbowyg.emoji.min.js"></script>
+<script src="/assets/trumbowyg/dist/plugins/fontsize/trumbowyg.fontsize.min.js"></script>
+<script src="/assets/trumbowyg/dist/plugins/highlight/trumbowyg.highlight.min.js"></script>
+<script src="/assets/trumbowyg/dist/plugins/history/trumbowyg.history.min.js"></script>
+<script src="/assets/trumbowyg/dist/plugins/indent/trumbowyg.indent.min.js"></script>
+<script src="/assets/trumbowyg/dist/plugins/noembed/trumbowyg.noembed.min.js"></script>
+<script src="/assets/trumbowyg/dist/plugins/pasteembed/trumbowyg.pasteembed.min.js"></script>
+<script src="/assets/trumbowyg/dist/plugins/table/trumbowyg.table.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-java.min.js" integrity="sha512-p2vAaPEsPvlIESCpoEI5IyzZowfdVZ2O39PsrOrkuTQl+AjD57T4L/Wxv5S8WCToLou0twQZaWO+tt660Rqb6Q==" crossorigin="anonymous"></script>
+<script>
+    $('#editor').trumbowyg({
+        btnsDef: {
+            align: {
+                dropdown: ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                ico: 'justifyLeft'
+            }
+        },
+        btns: [
+            ['viewHTML'],
+            ['h4','emoji'],
+            ['undo', 'redo'],
+            ['formatting'],
+            ['fontsize'],
+            ['fontfamily'],
+            ['lineheight'],
+            ['highlight'],
+            ['strong', 'em', 'del', 'underline'],
+            ['foreColor', 'backColor'],
+            ['link'],
+            ['table'],
+            ['unorderedList'],
+            ['orderedList'],
+            ['noembed'],
+            ['align'],
+            ['preformatted'],
+            ['horizontalRule'],
+            ['fullscreen']
+        ],
+        plugins: {
+            allowTagsFromPaste: {
+                allowedTags: ['br','p','h1','h2','h3','h4','h5','h6']
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-header="sticky" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>It is during our darkest moments that we must focus to see the light</title>
+    <link href="/assets/css/screen.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism-tomorrow.min.css"  />
+    <link rel="stylesheet" href="/assets/trumbowyg/dist/plugins/highlight/ui/trumbowyg.highlight.min.css">
+    <style>
+        .header-nav-wrap .nav-item{
+            font-family: "Open Sans", sans-serif;
+            font-size: 16px !important;
+        }
+        .post-info, .post-title, .tag-list span, .tag-list a{
+            font-family: "Open Sans", sans-serif;
+        }
+        .post-info{
+            font-size: 0.8rem !important;
+            text-transform: lowercase !important;
+        }
+        .tag-list span, .tag-list a{
+            font-size: 1rem !important;
+            text-transform: lowercase !important;
+        }
+
+    </style>
+</head>
+<body class="post-template tag-inspiration">
+<div class="site-wrap">
+ <div class="main">
+    <div class="single-post-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a class="btn btn-primary" th:href="@{/app/admin}">Go back</a>
+                    <span style="visibility: hidden"> Hidden</span>
+                    <div class="featured-image-wrap">
+                        <img class="feature-image"  th:src="@{'/images/post/' + ${post.imageName}}"/>
+                    </div>
+                    <div class="post-inner-wrap">
+                        <div class="post-info">
+                            <span class="primary-tag"><a href="/tag/inspiration/">Inspiration</a></span>
+                            <span class="date"><time th:text="${post.postDate}"></time></span>
+                            <span class="read-time">3 min read</span>
+                        </div>
+                        <h1 class="post-title" th:text="${post.title}"></h1>
+                        <div class="post-content" th:utext="${post.content}"></div>
+                        <div class="tag-list">
+                            <span class="label">Tag:</span>
+                            <a href="/tag/inspiration/">Inspiration</a>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <form class="form-inline" action="#" th:action="@{'/app/admin/post/' + ${post.id} + '/publish'}" method="post" >
+                                    <label for="publish"> I'm done. I want to</label>
+                                    <button id="publish"  class="btn btn-dark " type="submit"> Publish</button>
+                                </form>
+                            </div>
+                            <div class="col-6">
+                                <form class="form-inline" action="#" >
+                                    <label for="edit">Wait... Let me double </label>
+                                    <a id="edit" th:href="@{'/app/admin/post/' + ${post.id} + '/edit'}" class="btn btn-dark " type="submit"> Check</a>
+                                </form>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="/assets/js/app.bundle.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/prism.min.js"></script>
+<script src="/assets/trumbowyg/dist/plugins/highlight/trumbowyg.highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-java.min.js" integrity="sha512-p2vAaPEsPvlIESCpoEI5IyzZowfdVZ2O39PsrOrkuTQl+AjD57T4L/Wxv5S8WCToLou0twQZaWO+tt660Rqb6Q==" crossorigin="anonymous"></script>
+</body>
+</html>

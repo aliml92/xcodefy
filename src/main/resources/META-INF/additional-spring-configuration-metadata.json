@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "hibernate.search.default.directory_provider",
+      "type": "java.lang.String",
+      "description": "Description for hibernate.search.default.directory_provider."
+    },
+    {
+      "name": "server.tomcat.remote.port-header",
+      "type": "java.lang.String",
+      "description": "Description for server.tomcat.remote.port-header."
+    }
+  ] }

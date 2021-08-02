@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-header="sticky" >
+<head th:replace="common/fragments :: head(~{::title},~{::meta})">
+    <title >Topics</title>
+    <meta name="description" data-th-attr="content='best tutorials on java, spring framework, spring boot , sql , nosql and valuable tips'">
+</head>
+<body class="page-template page-tags">
+<div class="site-wrap">
+
+    <!-- navbar start -->
+    <div th:replace="common/fragments :: navbar"></div>
+    <!-- navbar end -->
+
+    <!-- main body start-->
+    <div class="main custom-archive">
+        <section class="cover-wrap">
+            <div class="container">
+                <div class="archive-cover has-image">
+                    <img class="feature-image" src="data:," th:attr="data-src=@{'/assets/image/topics-bg.jpg'}" alt="topics"/>
+                    <div class="cover-content-wrapper text-center tpt">
+                        <h1 class="title h1">Topics</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container custom-list-wrapper">
+            <div class="row" th:if="${categories}">
+                <div class="col-lg-3 col-md-4 col-sm-6 item-card-wrap" th:each="category : ${categories}">
+                    <a th:href="@{'/topic/' + ${category.name}}" class="item-card">
+                        <div class="item-card-inner card c">
+                            <div class="tag-name h4" th:text="${category.name}"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row" th:unless="${categories}">
+                <h2>No topics created yet</h2>
+            </div>
+        </div>
+    </div>
+    <!-- main body end-->
+
+    <!-- footer start-->
+
+    <!-- footer end-->
+    <div th:replace="common/fragments :: footer-after"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "devblog",
+  "version": "1.0.0",
+  "dependencies": {
+    "pell": "^1.0.6"
+  }
+}

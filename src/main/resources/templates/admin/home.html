@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="common/writer-fragments :: head">
+    <title>Bootstrap 4 Blog Template For Developers</title>
+</head>
+<body class="bg-dark">
+<div class="container-md bg-light">
+    <div th:replace="common/writer-fragments :: navbar"></div>
+    <br><br><br>
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <div class="alert alert-secondary alert-dismissible fade show" role="alert" th:if="${message}">
+                <span th:text="${message}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+        <div class="card mb-2" >
+            <div class="card-body">
+                <h2 class="text-center fs-1 my-4">Welcome to Admin's Page</h2>
+            </div>
+        </div>
+</div>
+<div th:replace="common/writer-fragments :: footer"></div>
+</body>
+</html>
