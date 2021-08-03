@@ -31,7 +31,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
             "/tag/*",
             "/search?*",
             "/authComment",
-            "/app/login",
+            "/YOUR_LOGIN_PATH", // set your login path to admin panel
             "/saveComment"
 
     };
@@ -58,14 +58,14 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .mvcMatchers(MVC_MATCHERS).permitAll()
-                .mvcMatchers("/app/admin/**").hasAuthority("ADMIN")
+                .mvcMatchers("/YOUR_ADMIN_PATH/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/app/login")
-                .defaultSuccessUrl("/app/admin")
-                .failureUrl("/app/login?error=true")
-                .and().logout().logoutSuccessUrl("/app/login?logout")
+                .loginPage("/YOUR_LOGIN_PATH")
+                .defaultSuccessUrl("/YOUR_ADMIN_PATH")
+                .failureUrl("/YOUR_LOGIN_PATH?error=true")
+                .and().logout().logoutSuccessUrl("/YOUR_LOGIN_PATH?logout")
                 .and().exceptionHandling().authenticationEntryPoint(unauthenticatedRequestHandler())
                 .and().csrf().ignoringAntMatchers("/saveComment");
 
