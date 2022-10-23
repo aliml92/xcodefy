@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String myExternalFilePath = "file:/var/www/html/upload/";
+        String myExternalFilePath = "file:/var/www/html/";
 
         registry.addResourceHandler("/images/post/**").addResourceLocations(myExternalFilePath);
 

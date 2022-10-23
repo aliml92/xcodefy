@@ -24,7 +24,7 @@ public class ImgStorageServiceImpl implements ImgStorageService {
         try {
             String fileName = file.getOriginalFilename();
             InputStream is = file.getInputStream();
-            Files.copy(is, Paths.get(path+fileName), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(is, Paths.get(path+"/"+fileName), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             String msg = String.format("Failed to store file %s", file.getName());
             throw new StorageException(msg, e);

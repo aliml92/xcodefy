@@ -11,10 +11,10 @@ class UnauthenticatedRequestHandler implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
-        if (request.getServletPath().startsWith("/YOUR_ADMIN_PATH")) {
+        if (request.getServletPath().startsWith("/app/admin")) {
             response.sendRedirect("/access-denied");
         } else {
-            response.sendRedirect("/YOUR_LOGIN_PATH");
+            response.sendRedirect("/app/login");
         }
     }
 }

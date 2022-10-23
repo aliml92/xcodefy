@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/YOUR_ADMIN_PATH")
+@RequestMapping("/app/admin")
 public class AdminController {
 
     private final PostService postService;
@@ -74,7 +74,7 @@ public class AdminController {
         MultipartFile postImage = postDto.getPostImage();
         imgStorageService.uploadImage(postImage);
         redirectAttributes.addFlashAttribute("message", "New post has been saved successfully");
-        return "redirect:/YOUR_ADMIN_PATH";
+        return "redirect:/app/admin";
     }
 
     @GetMapping("/post/{id}/preview")
@@ -116,7 +116,7 @@ public class AdminController {
         postRepository.updatePostById(title,content,date, postId);
         String msg = "Post with id: " + postId + " has been updated successfully ";
         redirectAttributes.addFlashAttribute("message", msg);
-        return "redirect:/YOUR_ADMIN_PATH";
+        return "redirect:/app/admin";
     }
 
     @PostMapping("/post/{id}/publish")
@@ -125,7 +125,7 @@ public class AdminController {
         postRepository.publishPostById(true, postId);
         String msg = "Post with id: " + postId + " has been published successfully ";
         redirectAttributes.addFlashAttribute("message", msg);
-        return "redirect:/YOUR_ADMIN_PATH";
+        return "redirect:/app/admin";
     }
 
     @GetMapping("/post/{id}/delete")
@@ -135,9 +135,9 @@ public class AdminController {
         postRepository.deleteById(postId);
         model.addFlashAttribute("message","Post with id: " + postId + "has been successfully deleted");
         if (page.equals("unpublished")){
-            return "redirect:/YOUR_ADMIN_PATH";
+            return "redirect:/app/admin";
         }
-        return "redirect:/YOUR_ADMIN_PATH/post/all";
+        return "redirect:/app/admin/post/all";
 
     }
 

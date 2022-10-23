@@ -1,0 +1,17 @@
+version: '3'
+services:
+  devblog:
+    image: "devblog.jar"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - PostgreSQL
+
+  postgres_db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgrespassword
+      - POSTGRES_USER=postgresuser
+      - POSTGRES_DB=postgresdb
