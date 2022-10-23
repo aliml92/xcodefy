@@ -43,5 +43,4 @@ access the admin panel at  `http://localhost:8080/app/login`.
 > if new post creation is successful, it is saved as draft (not published).
 > in draft page, preview new post and publish it
 ## Example pages
-![Alt text](images/home.png?raw=true "Homepage")
 ![Alt text](images/single_page.png?raw=true "Single page")
