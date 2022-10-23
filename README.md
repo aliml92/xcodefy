@@ -9,7 +9,7 @@ The app includes the following components
 - full text search (with `Hiberate Search`)
 - dynamically generated sitemap.xml
 
-![Alt text](images/home.png?raw=true "Homepage")
+
 
 ## Installation
 
@@ -42,3 +42,6 @@ access the admin panel at  `http://localhost:8080/app/login`.
 > When creating post, post description length must be less than 300 chars.
 > if new post creation is successful, it is saved as draft (not published).
 > in draft page, preview new post and publish it
+## Example pages
+![Alt text](images/home.png?raw=true "Homepage")
+![Alt text](images/single_page.png?raw=true "Single page")
